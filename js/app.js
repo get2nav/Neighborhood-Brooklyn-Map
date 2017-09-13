@@ -99,7 +99,7 @@ var viewModel = function() {
     }
 
     //listener to toggle bounce
-    google.maps.event.addListener(marker, 'click', function () {
+    google.maps.event.addListener(marker, 'click', function() {
       toggleBounce();
       setTimeout(toggleBounce, 1500);
     });
