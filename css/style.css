@@ -1,0 +1,284 @@
+*,
+:before,
+:after{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/********************
+#CLASSES
+********************/
+.is-mobile{
+
+}
+
+.is-tablet{
+    display: none;
+}
+
+.is-desktop{
+    display: none;
+}
+
+.lk-squeeze{
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.lk-clear{
+    display: block;
+    float: none;
+    clear: both;
+}
+
+.lk-clear-self:after{
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+/********************
+END CLASSES
+********************/
+
+/********************
+#STRUCTURE
+********************/
+html{
+    height: 100%;
+}
+
+body{
+    font-size: 100%;
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+.lk-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+}
+
+/**
+*
+* .lk-content wraps the content of the entire site.
+* Our menu is absolutely positioned inside of it,
+* so when we move this wrapper, the menu shows
+*
+*/
+.lk-content {
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    background-color: #4267b2;
+
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: .3s ease all;
+    transition: .3s ease all;
+}
+
+    .lk-toggle-nav {
+        cursor: pointer;
+        padding-left: 10px;
+    }
+
+    .lk-toggle-nav:before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        width: 20px;
+        height: 13px;
+        border-top: 8px double #000;
+        border-bottom: 3px solid #000;
+    }
+
+/**
+*
+* Our off viewport nav, free to scoll along
+* its y-axis.
+*/
+.lk-nav {
+    background: #c5d3de;
+    height: 100%;
+    left: -300px;
+    overflow-y: scroll;
+    position: absolute;
+    padding: 15px;
+    top: 0;
+    width: 300px;
+}
+
+    .lk-close {
+        cursor: pointer;
+        float: right;
+    }
+
+/**
+*
+* To change switch animation to opposite side:
+*   1. Change .lk-nav's left to right
+*   2. Change transformation to a negative X value (i.e. -300px)
+*
+*/
+.lk-wrapper.show-nav .lk-content{
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+}
+
+footer{
+}
+
+/********************
+END STRUCTURE
+********************/
+
+/********************
+#MEDIA QUERIES
+********************/
+@media screen and (min-width: 0){
+
+}
+
+
+/********************
+END MEDIA QUERIES
+********************/
+
+#map {
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.page-header {
+  /*padding-bottom: 25px;*/
+}
+
+h1 {
+  text-align: center;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  padding-top: 10px;
+}
+
+.searchTerm {
+  float: left;
+  width: 80%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+  color: black;;
+}
+
+.searchButton {
+  position: absolute;
+  right: -1px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #544b4b;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+
+}
+
+/*clear filter css*/
+
+
+
+
+.FilterButton{
+  margin-top: 5px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #544b4b;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+
+.list-view {
+    background-color: #43698c;
+    border-radius: 6px;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.list-view,
+.content {
+    overflow: hidden;
+    zoom: 1
+}
+
+.list-view {
+    margin-top: 15px
+}
+
+.list-view:first-child {
+    margin-top: 0
+}
+
+.content {
+    overflow: hidden;
+    zoom: 1
+}
+
+.content p {
+    line-height: 1.3;
+    margin-bottom: 0;
+}
+
+
+@media only screen and (max-width: 760px) {
+
+  .content p {
+        font-size: 10px!important;
+    }
+
+}

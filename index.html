@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brooklyn Restaurant Map</title>
+
+  <!-- <link rel="stylesheet" href="css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+  <div class="lk-wrapper">
+    <div class="lk-content">
+
+      <nav class="lk-nav">
+        <!-- off viewport navigation -->
+        <p class="lk-close">&times;</p>
+        <h2>Place Menu</h2>
+        <h4 id="map-load-failure"> Map load Error </h4>
+        <div class="search" id='filter'>
+          <input type="text" class="searchTerm" data-bind="value: filterSearch" placeholder="What are you looking for?">
+          <button type="submit" class="searchButton" data-bind="click: $root.filter">Search</button>
+          <button type="submit" class="FilterButton" data-bind="click: $root.resetFilter">Clear Filter</button>
+        </div>
+
+        <div id="search-error">
+          <h4 style="color: red">Search Box Empty</h4>
+        </div>
+
+        <div id="no-result">
+          <h4 style="color: red">No Places matching the Query</h4>
+        </div>
+
+
+        <div data-bind="foreach: queryList">
+          <div class="list-view" data-bind="click: $root.listToPointer">
+            <div class="content">
+              <h4 class="heading" data-bind="text: name"></h4>
+
+              <p data-bind="text: address"></p>
+
+            </div>
+          </div>
+        </div>
+
+      </nav>
+      <!-- end off viewport nav -->
+
+      <div class="page-header">
+        <a href="#" class="lk-toggle-nav"></a>
+        <h1>Brooklyn Restaurant Map</h1>
+        <h4 id="load-failure"> Map load Error </h4>
+      </div>
+      <div id="map"></div>
+
+    </div>
+    <!-- lk-content -->
+
+  </div>
+  <!-- lk-wrapper -->
+
+  <script src="js/knockout-3.4.2.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/app.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn4CAPVLZGuHOexPWmfy4WVfADEnwZs98&callback=googleMap" onerror="googleError()">
+  </script>
+</body>
+
+</html>
