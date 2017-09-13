@@ -93,6 +93,16 @@ var viewModel = function() {
     });
     pointers.push(marker);
     pointerInfo(data, marker);
+    //pointer bounce function
+    function toggleBounce() {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+
+    //listener to toggle bounce
+    google.maps.event.addListener(marker, 'click', function () {
+      toggleBounce();
+      setTimeout(toggleBounce, 1500);
+    });
   }
 
   /***************calling mapMarker based on API data****************/
