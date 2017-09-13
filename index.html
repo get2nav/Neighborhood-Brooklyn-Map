@@ -20,16 +20,12 @@
         <!-- off viewport navigation -->
         <p class="lk-close">&times;</p>
         <h2>Place Menu</h2>
-        <h4 id="map-load-failure"> Map load Error </h4>
         <div class="search" id='filter'>
           <input type="text" class="searchTerm" data-bind="value: filterSearch" placeholder="What are you looking for?">
           <button type="submit" class="searchButton" data-bind="click: $root.filter">Search</button>
           <button type="submit" class="FilterButton" data-bind="click: $root.resetFilter">Clear Filter</button>
         </div>
 
-        <div id="search-error" data-bind="visible: !filterSearch">
-          <h4 style="color: red">Search Box Empty</h4>
-        </div>
 
         <div id="no-result" data-bind="visible: queryList().length <= 0">
           <h4 style="color: red">No Places matching the Query</h4>
@@ -53,9 +49,9 @@
       <div class="page-header">
         <a href="#" class="lk-toggle-nav"></a>
         <h1>Brooklyn Restaurant Map</h1>
-        <div id="load-failure"> </div>
+        <h2 id="load-failure" style="color : red"> Map load Error </h2>
       </div>
-      <div id="map">></div>
+      <div id="map"></div>
 
     </div>
     <!-- lk-content -->

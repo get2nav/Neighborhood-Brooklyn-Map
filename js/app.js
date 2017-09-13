@@ -6,6 +6,7 @@ var menuListDisplay = function(item) {
 
 /******* view and Model*******/
 var viewModel = function() {
+  $('#load-failure').hide();
   var self = this; //edit
   self.menuList = ko.observableArray([]);
   var places = [];
@@ -30,9 +31,12 @@ var viewModel = function() {
       mapData.fitBounds(latLng);
       mapData.setCenter(latLng.getCenter());
       locationList(data.response.groups[0].items);
+    }).error(function(e) {
+      $(".lk-nav").hide();
+      $('#load-failure').show();
     });
-    $('#search-error').hide();
-    $('#no-result').hide();
+    // $('#search-error').hide();
+    // $('#no-result').hide();
   };
 
   self.locationLatLng();
@@ -63,8 +67,10 @@ var viewModel = function() {
     var contentString = '<div>' + '<div class="RestaurantName">' + '<h3>' + restaurantName + '</h3>' + '</div>' + '<div class="address">' + address + '</div>' + '</div>';
 
     google.maps.event.addListener(marker, 'click', function() {
+
       pointerinfoWindow.setContent(contentString);
       pointerinfoWindow.open(mapData, marker);
+
     });
   }
 
@@ -84,6 +90,7 @@ var viewModel = function() {
   };
 
   /***********marking pointer*********/
+
   function mapMarker(data) {
     var marker = new google.maps.Marker({
       map: mapData,
@@ -96,12 +103,16 @@ var viewModel = function() {
     //pointer bounce function
     function toggleBounce() {
       marker.setAnimation(google.maps.Animation.BOUNCE);
+      window.setTimeout(function() {
+        marker.setAnimation(null);
+      }, 700);
     }
 
     //listener to toggle bounce
     google.maps.event.addListener(marker, 'click', function() {
       toggleBounce();
-      setTimeout(toggleBounce, 1500);
+      setTimeout(toggleBounce, 700);
+      marker.setAnimation(null);
     });
   }
 
@@ -124,19 +135,19 @@ var viewModel = function() {
     self.queryList(self.menuList());
     cleanPointers();
     pointerPlace(places);
-    $('#no-result').hide();
-    $('#search-error').hide();
+    // $('#no-result').hide();
+    // $('#search-error').hide();
 
   };
   /***************Filter Function*********/
   self.filter = function() {
     var filterInput = self.filterSearch().toLowerCase();
-    $('#no-result').hide();
-    $('#search-error').hide();
+    // $('#no-result').hide();
+    // $('#search-error').hide();
 
     var empytCheck = 0;
     if (!filterInput) {
-      $('#search-error').show();
+      // $('#search-error').show();
     } else {
       self.queryList([]);
       cleanPointers();
@@ -152,7 +163,7 @@ var viewModel = function() {
     // Empty Search box check
     console.log(self.queryList);
     if (empytCheck <= 0) {
-      $('#no-result').show();
+      // $('#no-result').show();
     }
 
   };
@@ -166,8 +177,8 @@ var viewModel = function() {
 /*****************/
 var mapData;
 
+
 function googleMap() {
-  $('#map-load-failure').hide();
   $('#load-failure').hide();
   var attributes = {
     zoom: 13
@@ -175,12 +186,12 @@ function googleMap() {
   mapData = new google.maps.Map(document.getElementById('map'), attributes);
   $('#map').height($(window).height()); //Adjusting the map to window size
   ko.applyBindings(new viewModel()); // calling the View and Model
+
 }
 
 /***********************/
 /*Google API load error*/
 /*Google API load error*/
 function googleError() {
-  $('#map-load-failure').show();
   $('#load-failure').show();
 }
